@@ -13,6 +13,7 @@ The objective of this project was to simulate an enterprise network environment 
   <img width="700" height="707" alt="image" src="https://github.com/user-attachments/assets/9e2c9b3f-e20a-49db-8bec-43225d02b255" />
 
 * **Step 2: Access Control Configuration:** Established an initial `enable password` to restrict access to Privileged EXEC mode, preventing unauthorized users from altering the device configuration.
+* 
   <img width="229" height="40" alt="image" src="https://github.com/user-attachments/assets/b22ae715-59f7-442e-87fe-04c323bcb75f" />
 
 * **Step 3: Password Encryption:** Implemented the `service password-encryption` command to obscure clear-text passwords in the running configuration, providing a baseline layer of security (Type 7 encryption) against over-the-shoulder viewing.
