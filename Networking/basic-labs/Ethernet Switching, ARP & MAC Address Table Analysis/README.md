@@ -12,17 +12,17 @@ The objective of this project was to analyze Layer 2 Ethernet switching operatio
 * **Step 1: Traffic Simulation & ARP Observation:** Initiated ICMP traffic (ping) between end hosts (PCs) on the network. Observed how the initial communication requires an ARP Request (a broadcast message to all local devices) to discover the destination MAC address before the ICMP Echo Request can be sent. <br/>
 * **Step 2: Packet Analysis:** Used simulation mode to analyze network frames. Inspected the outbound Protocol Data Unit (PDU) details, verifying key Ethernet frame fields such as the Destination MAC (e.g., the `FFFF.FFFF.FFFF` broadcast address), Source MAC, and the Ethernet Type field (`0x0806` for ARP). <br/>
   <img width="939" height="457" alt="image" src="https://github.com/user-attachments/assets/d65cec0c-d4e9-4292-a13d-5d773b58d957" /> <br/>
-        **Step 2.1 - Communication Initiation:** PC1 (192.168.1.1) attempts to ping PC3 (192.168.1.3). Because its ARP table is empty, PC1 buffers the ICMP packet and prepares an ARP Request to discover PC3's MAC address. <br/>
+        --> **Step 2.1 - Communication Initiation:** PC1 (192.168.1.1) attempts to ping PC3 (192.168.1.3). Because its ARP table is empty, PC1 buffers the ICMP packet and prepares an ARP Request to discover PC3's MAC address. <br/>
   <img width="977" height="394" alt="image" src="https://github.com/user-attachments/assets/e43e55ff-d52b-4c94-9636-e08d78c4cd49" /> <br/>
-        **Step 2.2 - ARP Broadcast (Switch 1):** PC1 sends the ARP Request to Switch 1 (SW1). Recognizing the destination MAC as a broadcast address (FFFF.FFFF.FFFF), SW1 floods the frame out all active ports. PC2 receives the frame but drops it (indicated by the red X) because the target IP does not match its own. <br/>
+        --> **Step 2.2 - ARP Broadcast (Switch 1):** PC1 sends the ARP Request to Switch 1 (SW1). Recognizing the destination MAC as a broadcast address (FFFF.FFFF.FFFF), SW1 floods the frame out all active ports. PC2 receives the frame but drops it (indicated by the red X) because the target IP does not match its own. <br/>
   <img width="1037" height="434" alt="image" src="https://github.com/user-attachments/assets/8dedcf9b-7280-43dc-a31c-af38cc12d028" /> <br/>
-        **Step 2.3 - ARP Broadcast (Switch 2):** The broadcast frame travels over the inter-switch link to Switch 2 (SW2), which also floods it out to its connected hosts. PC4 drops the packet, but PC3 accepts it because the target IP address matches. <br/>
+        --> **Step 2.3 - ARP Broadcast (Switch 2):** The broadcast frame travels over the inter-switch link to Switch 2 (SW2), which also floods it out to its connected hosts. PC4 drops the packet, but PC3 accepts it because the target IP address matches. <br/>
   <img width="969" height="380" alt="image" src="https://github.com/user-attachments/assets/e6a3ee61-4386-45cf-97de-7da65e67a366" /> <br/>
-        **Step 2.4 - ARP Reply Generation:** PC3 processes the ARP Request and generates an ARP Reply. Unlike the request, this reply is a unicast frame addressed specifically to PC1's MAC address. <br/>
+        --> **Step 2.4 - ARP Reply Generation:** PC3 processes the ARP Request and generates an ARP Reply. Unlike the request, this reply is a unicast frame addressed specifically to PC1's MAC address. <br/>
   <img width="1052" height="409" alt="image" src="https://github.com/user-attachments/assets/cca354a0-dbfb-4549-a1ec-7a151af9ab38" /> <br/>
-        **Step 2.5 - Unicast Forwarding:** The unicast ARP Reply travels from PC3 to SW2, and then across the link to SW1. The switches use their dynamically built MAC address tables to forward the frame directly, rather than broadcasting it. <br/>
+        --> **Step 2.5 - Unicast Forwarding:** The unicast ARP Reply travels from PC3 to SW2, and then across the link to SW1. The switches use their dynamically built MAC address tables to forward the frame directly, rather than broadcasting it. <br/>
   <img width="972" height="403" alt="image" src="https://github.com/user-attachments/assets/f8998702-1a5a-4402-a6cb-877388224ef3" /> <br/>
-        **Step 2.6 - ARP Resolution Complete:** SW1 forwards the unicast ARP Reply directly to PC1. PC1 updates its ARP table with PC3's MAC address and can now successfully send the original ICMP Echo Request (ping). <br/>
+        --> **Step 2.6 - ARP Resolution Complete:** SW1 forwards the unicast ARP Reply directly to PC1. PC1 updates its ARP table with PC3's MAC address and can now successfully send the original ICMP Echo Request (ping). <br/>
   
 
 
