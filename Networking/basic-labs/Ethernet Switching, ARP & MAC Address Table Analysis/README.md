@@ -3,6 +3,10 @@
 ## Objective
 The objective of this project was to analyze Layer 2 Ethernet switching operations by simulating network traffic, observing Address Resolution Protocol (ARP) behavior, and examining how Cisco switches dynamically build and manage their MAC Address tables. This lab reinforces core understanding of unicast and broadcast traffic flow across a local area network.
 
+## Network Topology
+<img width="965" height="396" alt="Topology" src="https://github.com/user-attachments/assets/885644c2-bc07-4f13-bef1-49ebfbaed999" />
+
+
 ## Project Steps
 
 * **Step 1: Traffic Simulation & ARP Observation:** Initiated ICMP traffic (ping) between end hosts (PCs) on the network. Observed how the initial communication requires an ARP Request (a broadcast message to all local devices) to discover the destination MAC address before the ICMP Echo Request can be sent.
@@ -26,6 +30,8 @@ The objective of this project was to analyze Layer 2 Ethernet switching operatio
 
 
 * **Step 4: MAC Address Table Verification:** Navigated to Privileged EXEC mode on the switches and utilized the `show mac address-table` command. Correlated the dynamically learned MAC addresses to their respective switch port interfaces (e.g., FastEthernet0/1, GigabitEthernet0/1) to identify exactly which host lived on which port.
+
+  
   <img width="439" height="183" alt="Step 4 1" src="https://github.com/user-attachments/assets/e9330b9f-3464-4122-9a8c-2636df148997" />
   <img width="337" height="186" alt="Step 4 2" src="https://github.com/user-attachments/assets/98737815-ac09-45b4-8a16-124f8318d499" />
 
