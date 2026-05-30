@@ -10,8 +10,7 @@ The objective of this project was to analyze Layer 2 Ethernet switching operatio
 ## Project Steps
 
 * **Step 1: Traffic Simulation & ARP Observation:** Initiated ICMP traffic (ping) between end hosts (PCs) on the network. Observed how the initial communication requires an ARP Request (a broadcast message to all local devices) to discover the destination MAC address before the ICMP Echo Request can be sent.
-<br/>
-        * **Step 2: Packet Analysis:** Used simulation mode to analyze network frames. Inspected the outbound Protocol Data Unit (PDU) details, verifying key Ethernet frame fields such as the Destination MAC (e.g., the `FFFF.FFFF.FFFF` broadcast address), Source MAC, and the Ethernet Type field (`0x0806` for ARP).
+* **Step 2: Packet Analysis:** Used simulation mode to analyze network frames. Inspected the outbound Protocol Data Unit (PDU) details, verifying key Ethernet frame fields such as the Destination MAC (e.g., the `FFFF.FFFF.FFFF` broadcast address), Source MAC, and the Ethernet Type field (`0x0806` for ARP).
   <img width="939" height="457" alt="image" src="https://github.com/user-attachments/assets/d65cec0c-d4e9-4292-a13d-5d773b58d957" />
         **Step 2.1 - Communication Initiation:** PC1 (192.168.1.1) attempts to ping PC3 (192.168.1.3). Because its ARP table is empty, PC1 buffers the ICMP packet and prepares an ARP Request to discover PC3's MAC address.
   <img width="977" height="394" alt="image" src="https://github.com/user-attachments/assets/e43e55ff-d52b-4c94-9636-e08d78c4cd49" />
